@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import ca.sheridancollege.minhaja.passwordstoreareebaminhaj.utilities.RandomNumberGenerator;
 
 @Data
 @NoArgsConstructor
@@ -33,4 +34,14 @@ public class PasswordRecord {
 
     @Column(name = "NOTES", length = 500)
     private String notes;
+
+    public PasswordRecord(@NonNull String title, String username, String password, String url, String email, String notes) {
+        this.id = RandomNumberGenerator.generateRandomId();  // Assign a random ID
+        this.title = title;
+        this.username = username;
+        this.password = password;
+        this.url = url;
+        this.email = email;
+        this.notes = notes;
+    }
 }
