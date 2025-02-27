@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+
+<header th:fragment="Header">
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/viewPasswordRecords">View Password Records</a> |
+        <a href="/searchPassword">Search Password</a> |
+        <a href="/addPassword">Add Password</a>
+    </nav>
+</header>
+
+<footer>
+    <hr>
+    <p>
+        <strong>Sheridan College</strong>
+        <span style="color: red;">❤️</span>
+        <span>Copyright Areeba Minhaj</span>
+    </p>
+    <p>ID: 991685799</p>
+</footer>
+
+</body>
+</html>
