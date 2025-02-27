@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -26,15 +27,24 @@ public class HomeController {
     }
 
     @PostMapping("/addPassword")
-    public String addPassword(@ModelAttribute PasswordRecord passwordRecord, Model model) {
-        long generatedId = RandomNumberGenerator.generateRandomId();
-        passwordRecord.setId(generatedId);
+    public String addPassword(
+            @RequestParam String title,
+            @RequestParam String username,
+            @RequestParam String password,
+            RedirectAttributes redirectAttributes) {
 
+        long generatedId = RandomNumberGenerator.generateRandomId();
+
+        PasswordRecord passwordRecord = new PasswordRecord();
+        passwordRecord.setId(generatedId);
+        passwordRecord.setTitle(title);
+        passwordRecord.setUsername(username);
+        passwordRecord.setPassword(password);
         databaseAccess.save(passwordRecord);
 
-        model.addAttribute("message", "Record added successfully");
-        model.addAttribute("passwordRecord", new PasswordRecord());
-        return "index";
+        redirectAttributes.addFlashAttribute("successMessage", "Password record successfully added!");
+
+        return "redirect:/";
     }
 
     @GetMapping("/viewPasswordRecords")

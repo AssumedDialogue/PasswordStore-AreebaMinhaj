@@ -28,12 +28,10 @@ footer {
     margin-top: 20px;
 }
 
-footer a {
-    margin: 0;
-}
 footer strong {
     font-weight: bold;
 }
+
 footer span.heart {
     color:red;
 }
@@ -52,12 +50,10 @@ table {
 
 table, th, td {
     border: 1px solid black;
-}
-
-th, td {
     padding: 10px;
     text-align: center;
-}
+}+
+
 
 /* Buttons */
 button {
@@ -73,9 +69,39 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Images */
-img {
-    max-width: 300px;
-    height: auto;
-    margin: 20px;
+.password-form {
+    width: 300px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center;
+    width: 50%;
+    font-weight: bold;
 }

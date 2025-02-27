@@ -10,6 +10,30 @@
 <main>
     <h2>Welcome to Password Manager</h2>
 
+    <div th:if="${successMessage}" class="success-message">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <h3>Add a New Password Record</h3>
+
+    <form th:action="@{/addPassword}" method="post" class="password-form">
+        <div class="form-group">
+        <label>Title:</label>
+        <input type="text" name="title" required>
+        </div>
+
+        <div class="form-group">
+        <label>Username:</label>
+        <input type="text" name="username" required>
+        </div>
+
+        <div class="form-group">
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        </div>
+
+        <button type="submit">Add Record</button>
+    </form>
 </main>
 
 <footer th:replace="~{headerAndFooter.html::Footer}"></footer>
