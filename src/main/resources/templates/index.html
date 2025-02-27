@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Password Manager</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
 
@@ -30,6 +31,21 @@
         <div class="form-group">
         <label>Password:</label>
         <input type="password" name="password" required>
+        </div>
+
+        <div class="form-group">
+            <label>Url:</label>
+            <input type="url" name="url">
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="email" name="email">
+        </div>
+
+        <div class="form-group">
+            <label>Notes:</label>
+            <input type="notes" name="notes">
         </div>
 
         <button type="submit">Add Record</button>

@@ -31,6 +31,9 @@ public class HomeController {
             @RequestParam String title,
             @RequestParam String username,
             @RequestParam String password,
+            @RequestParam String url,
+            @RequestParam String email,
+            @RequestParam String notes,
             RedirectAttributes redirectAttributes) {
 
         long generatedId = RandomNumberGenerator.generateRandomId();
@@ -40,6 +43,9 @@ public class HomeController {
         passwordRecord.setTitle(title);
         passwordRecord.setUsername(username);
         passwordRecord.setPassword(password);
+        passwordRecord.setUrl(url);
+        passwordRecord.setEmail(email);
+        passwordRecord.setNotes(notes);
         databaseAccess.save(passwordRecord);
 
         redirectAttributes.addFlashAttribute("successMessage", "Password record successfully added!");
@@ -48,21 +54,14 @@ public class HomeController {
     }
 
     @GetMapping("/viewPasswordRecords")
-    public String viewPasswordRecords(Model model) {
-        List<PasswordRecord> records = (List<PasswordRecord>) databaseAccess.findAll();
-        model.addAttribute("passwordRecords", records);
-        return "viewPasswordRecords";
+    public ModelAndView viewPasswordRecords(){
+        return new ModelAndView("viewPasswordRecord", "passwordRecords", databaseAccess.findAll());
+
     }
 
     @GetMapping("/searchPassword")
-    public String searchPassword(@RequestParam("title") String title, Model model) {
-        List<PasswordRecord> results = databaseAccess.findByTitle(title);
-
-        if (results.isEmpty()) {
-            model.addAttribute("message", "Record Not Found!");
-        } else {
-            model.addAttribute("results", results);
-        }
-        return "searchPasswordRecord";
+    public ModelAndView searchPassword(@RequestParam("title") String searchTitle) {
+        List<PasswordRecord> matchingRecords = databaseAccess.findByTitle(searchTitle);
+        return new ModelAndView("searchPasswordRecord", "passwordRecords", matchingRecords);
     }
 }
